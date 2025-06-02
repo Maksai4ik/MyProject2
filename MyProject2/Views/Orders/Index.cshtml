@@ -1,0 +1,74 @@
+﻿@model MyProject2.Models.OrderDriverViewModel
+
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+<h1>Заказы</h1>
+
+<p>
+    <a asp-action="Create">Создать</a>
+</p>
+<form asp-controller="Orders" asp-action="Index">
+    <p>
+        <select asp-for="DriverID" asp-items="Model.Drivers">
+            <option value="">Все</option>
+        </select>
+        <label>Имя фирмы: <input type="text" name="SearchString" /></label>
+        <input type="submit" value="Поиск" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders![0].NameFirm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders![0].OrderNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders![0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders![0].OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders![0].Car)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders![0].Driver)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Orders) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameFirm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.NameCar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Driver.DiverName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

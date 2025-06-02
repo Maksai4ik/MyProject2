@@ -1,0 +1,39 @@
+﻿@model MyProject2.Models.Driver
+
+@{
+    ViewData["Title"] = "Удалить";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы уверены, что хотите это удалить?</h3>
+<div>
+    <h4>Водитель</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DiverName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DiverName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться назад</a>
+    </form>
+</div>
